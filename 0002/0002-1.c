@@ -53,11 +53,10 @@ int main()
             }
 
             if (fabs(amat[x][i]) < eps)
-            { // 프로그램의 비정상적 종료
-                printf("\n 원소가 너무 작아서 계속할 수가 없슴 !!!");
-                getchar();
-                getchar();
-                return 0;
+            {
+                // 프로그램의 비정상적 종료
+                printf("\n 원소가 너무 작아서 계속할 수가 없음 !!!");
+                return -1;
             }
         }
 
@@ -78,20 +77,20 @@ int main()
         // 소거연산을 해줌
         for (j = 0; j < dim; j += 1)
         {
-            if (j != i)
-            {
-                v = amat[j][i];
-                for (k = 0; k < dim + 1; k += 1)
-                {
-                    amat[j][k] -= (amat[i][k] / amat[i][i]) * v;
-                }
-            }
-            else
+            if (i == j)
             {
                 v = amat[j][i];
                 for (k = 0; k < dim + dim; k += 1)
                 {
                     amat[j][k] /= v;
+                }
+            }
+            else
+            {
+                v = amat[j][i];
+                for (k = 0; k < dim + 1; k += 1)
+                {
+                    amat[j][k] -= (amat[i][k] / amat[i][i]) * v;
                 }
             }
             printMatrix(amat, dim, dim + 1);
