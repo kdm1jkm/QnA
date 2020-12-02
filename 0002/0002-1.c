@@ -3,16 +3,29 @@
 // augmented matrix 는 첨가행렬 또는 확장행렬로 번역한다.
 
 #include <stdio.h>
-#include <stdlib.h>
+// #include <stdlib.h>
 #include <math.h>
 #define eps 0.000000001
+
+void printMatrix(double mat[10][11], int a, int b)
+{
+    for (int i = 0; i < a; i++)
+    {
+        for (int j = 0; j < b; j++)
+        {
+            printf("%f ", mat[i][j]);
+        }
+        printf("\n");
+    }
+    printf("\n");
+}
 
 int main()
 {
     double amat[10][11], v;
     int i, j, k, x, dim;
 
-    system("cls");
+    // system("cls");
     printf("Matrix size: ");
     scanf("%d", &dim);
 
@@ -48,6 +61,8 @@ int main()
             }
         }
 
+        printMatrix(amat, dim, dim + 1);
+
         // 가장 큰 원소를 가진 행과 i번째 행을 서로 바꿈
         if (x != i)
         {
@@ -58,6 +73,7 @@ int main()
                 amat[x][k] = v;
             }
         }
+        printMatrix(amat, dim, dim + 1);
 
         // 소거연산을 해줌
         for (j = 0; j < dim; j += 1)
@@ -78,7 +94,9 @@ int main()
                     amat[j][k] /= v;
                 }
             }
+            printMatrix(amat, dim, dim + 1);
         }
+        puts("=======================================");
     }
     // 행렬의 출력
     printf("\noutput result: \n");
